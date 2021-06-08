@@ -8,12 +8,15 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-
-      - name: lint
-      - uses: actions/setup-go@v2
+      - name: "setup"
+        uses: actions/setup-go@v2
         with:
           go-version: '1.16.5'
+
+      - name: "checkout-code"
+        uses: actions/checkout@v2
+
+      - name: "lint"
         run: |
           curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.40.1
           golangci-lint run
@@ -21,12 +24,15 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-
-      - name: "test"
-      - uses: actions/setup-go@v2
+      - name: "setup"
+        uses: actions/setup-go@v2
         with:
           go-version: '1.16.5'
+
+      - name: "checkout-code"
+        uses: actions/checkout@v2
+
+      - name: "test"
         run: go test -v ./...
 
 # Example of testing multiple platforms and versions
