@@ -26,7 +26,7 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: |
-            ssh $SSH_USERNAME@$SSH_HOST "echo 'hello'"
+            ssh $SSH_USERNAME@$SSH_HOST -p $SSH_PORT "echo 'hello'"
 workflows:
   version: 2
   build-and-deploy:
